@@ -2,26 +2,15 @@ from board import Board
 
 
 class Gameplay:
-    __board = Board(4, 4)
+    __board = Board()
     __win_limit = 4
 
-    def __init__(self):
-        self.__board.set_element(0, 0, 'a')
-        self.__board.set_element(0, 1, 'b')
-        self.__board.set_element(0, 2, 'c')
-        self.__board.set_element(0, 3, 'd')
-        self.__board.set_element(1, 0, 'e')
-        self.__board.set_element(1, 1, 'a')
-        self.__board.set_element(1, 2, 'g')
-        self.__board.set_element(1, 3, 'h')
-        self.__board.set_element(2, 0, 'i')
-        self.__board.set_element(2, 1, 'j')
-        self.__board.set_element(2, 2, 'a')
-        self.__board.set_element(2, 3, 'l')
-        self.__board.set_element(3, 0, 'q')
-        self.__board.set_element(3, 1, 'w')
-        self.__board.set_element(3, 2, 'e')
-        self.__board.set_element(3, 3, 'p')
+    def __init__(self, board_width=3, board_height=3, win_limit=3):
+        self.__board = Board(board_width, board_height)
+        self.__win_limit = win_limit
+        for i in range(board_width):
+            for j in range(board_height):
+                self.__board.set_element(i, j, '-')
         print(self.__board)
 
     def is_win(self):
@@ -34,6 +23,20 @@ class Gameplay:
 
                         return True
         return False
+
+    def user_move(self, sign):
+        row = input('Choose a row: ')
+        column = input('Choose a column: ')
+        if self.__is_not_out_of_board_range(row, column):
+            self.__board.set_element(row, column, sign)
+        else:
+            self.user_move(sign)
+
+    def set_board(self, board): #for tests only?
+        self.__board = board
+
+    def set_win_limit(self, win_limit): #for tests only?
+        self.__win_limit = win_limit
 
     def __check_down(self, row, column, sign, count):
             if count == self.__win_limit:

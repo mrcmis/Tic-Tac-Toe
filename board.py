@@ -6,13 +6,14 @@ class Board:
     def __init__(self, width=3, height=3):
         self.__width = width
         self.__height = height
-        self.__matrix_board = [["x" for column in range(height)] for row in range(width)]
+        self.__matrix_board = [["-" for column in range(height)] for row in range(width)]
 
     def __str__(self):
         return self._to_string()
 
     def set_element(self, row, column, value):
-        self.__matrix_board[row][column] = value
+        if row in range(self.__height) and column in range(self.__width):
+            self.__matrix_board[row][column] = value
 
     def _to_string(self):
         board_repr = ""
@@ -33,3 +34,4 @@ class Board:
 
     def get_sign(self, row, column):
         return self.__matrix_board.copy()[row][column]
+
