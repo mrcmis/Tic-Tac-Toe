@@ -6,7 +6,7 @@ class Board:
     def __init__(self, width=3, height=3):
         self.__width = width
         self.__height = height
-        self.__matrix_board = [["-" for column in range(height)] for row in range(width)]
+        self.__matrix_board = [["-" for _ in range(height)] for _ in range(width)]
 
     def __str__(self):
         return self._to_string()

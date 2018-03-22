@@ -1,9 +1,11 @@
 from board import Board
-
+from player import Player
 
 class Gameplay:
     __board = Board()
     __win_limit = 4
+    __player_one = Player()
+    __player_two = Player()
 
     def __init__(self, board_width=3, board_height=3, win_limit=3):
         self.__board = Board(board_width, board_height)
@@ -11,7 +13,12 @@ class Gameplay:
         for i in range(board_width):
             for j in range(board_height):
                 self.__board.set_element(i, j, '-')
-        print(self.__board)
+        while self.__player_one.is_name_empty() or self.__player_two.is_name_empty():
+            try:
+                self.__player_one.set_name(input("Input first player name "))
+                self.__player_two.set_name(input("Input second player name "))
+            except Exception as error:
+                print(error.message)
 
     def is_win(self):
         for i in range(self.__board.get_width()):
@@ -39,6 +46,8 @@ class Gameplay:
         self.__win_limit = win_limit
 
     def __check_down(self, row, column, sign, count):
+            if sign == '-':
+                return False
             if count == self.__win_limit:
                 return True
             if self.__is_not_out_of_board_range(row, column) and self.__board.get_sign(row, column) == sign:
@@ -47,6 +56,8 @@ class Gameplay:
             return False
 
     def __check_right(self, row, column, sign, count):
+            if sign == '-':
+                return False
             if count == self.__win_limit:
                 return True
             if self.__is_not_out_of_board_range(row, column) and self.__board.get_sign(row, column) == sign:
@@ -55,6 +66,8 @@ class Gameplay:
             return False
 
     def __check_right_up(self, row, column, sign, count):
+            if sign == '-':
+                return False
             if count == self.__win_limit:
                 return True
             if self.__is_not_out_of_board_range(row, column) and self.__board.get_sign(row, column) == sign:
@@ -63,6 +76,8 @@ class Gameplay:
             return False
 
     def __check_right_down(self, row, column, sign, count):
+            if sign == '-':
+                return False
             if count == self.__win_limit:
                 return True
             if self.__is_not_out_of_board_range(row, column) and self.__board.get_sign(row, column) == sign:
@@ -77,3 +92,14 @@ class Gameplay:
                 return True
             else:
                 return False
+
+    def start(self):
+        while not self.is_win():
+            print("{} turn! Your sign is: O".format(self.__player_one.get_name()))
+            self.user_move('O')
+            print(self.__board)
+            if self.is_win():
+                break
+            print("{} turn! Your sign is: X".format(self.__player_two.get_name()))
+            self.user_move('X')
+            print(self.__board)
