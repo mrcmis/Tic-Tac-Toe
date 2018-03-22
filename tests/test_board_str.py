@@ -6,13 +6,13 @@ class TestBoard(TestCase):
     def test_check_if_str_return_proper_repr(self):
         test_board = board.Board(3, 3)
         test_board.set_element(1, 1, 'x')
-        expected_str = "---\n-x-\n---\n"
+        expected_str = "- - - \n\n- x - \n\n- - - \n\n"
         self.assertEqual(test_board.__str__(), expected_str)
 
     def test_check_if_str_return_proper_repr2(self):
         test_board = board.Board(1, 1)
         test_board.set_element(0, 0, 'x')
-        expected_str = "x\n"
+        expected_str = "x \n\n"
         self.assertEqual(test_board.__str__(), expected_str)
 
     def test_check_if_str_return_proper_repr3(self):
@@ -26,7 +26,7 @@ class TestBoard(TestCase):
         test_board.set_element(2, 4, 'x')
         test_board.set_element(3, 4, 'o')
         test_board.set_element(4, 4, 'o')
-        expected_str = "oxoxo\n----x\n----x\n----o\n----o\n"
+        expected_str = "o x o x o \n\n- - - - x \n\n- - - - x \n\n- - - - o \n\n- - - - o \n\n"
         self.assertEqual(test_board.__str__(), expected_str)
 
     def test_check_if_str_return_proper_repr4(self):
@@ -35,10 +35,10 @@ class TestBoard(TestCase):
         test_board.set_element(0, 1, 'o')
         test_board.set_element(1, 0, 'o')
         test_board.set_element(1, 1, 'o')
-        expected_str = "oo\noo\n"
+        expected_str = "o o \n\no o \n\n"
         self.assertEqual(test_board.__str__(), expected_str)
 
     def test_check_if_str_return_proper_repr5(self):
         test_board = board.Board(3, 3)
-        expected_str = "---\n---\n---\n"
+        expected_str = "- - - \n\n- - - \n\n- - - \n\n"
         self.assertEqual(test_board.__str__(), expected_str)

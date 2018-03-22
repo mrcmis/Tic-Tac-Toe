@@ -19,8 +19,8 @@ class Board:
         board_repr = ""
         for i in range(self.__width):
             for j in range(self.__height):
-                board_repr = board_repr + self.__matrix_board[i][j]
-            board_repr = board_repr + "\n"
+                board_repr = board_repr + self.__matrix_board[i][j] + " "
+            board_repr = board_repr + "\n\n"
         return board_repr
 
     def get_board_matrix(self):
