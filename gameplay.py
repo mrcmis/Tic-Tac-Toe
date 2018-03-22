@@ -25,8 +25,8 @@ class Gameplay:
         return False
 
     def user_move(self, sign):
-        row = input('Choose a row: ')
-        column = input('Choose a column: ')
+        row = int(input('Choose a row: '))
+        column = int(input('Choose a column: '))
         if self.__is_not_out_of_board_range(row, column):
             self.__board.set_element(row, column, sign)
         else:
