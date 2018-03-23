@@ -6,6 +6,7 @@ To play the game download whole repository and execute [main.py](https://github.
 Follow instructions given in the application to properly play the game. Have fun :) !
 ## Contributors
 [Marcin Miś](https://github.com/mrcmis)
+
 [Jarosław Cierpch](https://github.com/Loniowsky)
 
 *Work in progress!*
