@@ -30,6 +30,12 @@ class TestBoard(TestCase):
         self.assertEqual(test_board.__str__(), expected_str)
 
     def test_check_if_str_return_proper_repr4(self):
+        test_board = board.Board(2, 3)
+        test_board.set_element(0, 0, 'x')
+        expected_str = "x - \n\n- - \n\n- - \n\n"
+        self.assertEqual(test_board.__str__(), expected_str)
+
+    def test_check_if_str_return_proper_repr4(self):
         test_board = board.Board(2, 2)
         test_board.set_element(0, 0, 'o')
         test_board.set_element(0, 1, 'o')

@@ -21,8 +21,8 @@ class Gameplay:
                 print(error.message)
 
     def is_win(self):
-        for i in range(self.__board.get_width()):
-            for j in range(self.__board.get_height()):
+        for i in range(self.__board.get_height()):
+            for j in range(self.__board.get_width()):
                 if (self.__check_down(i, j, self.__board.get_sign(i, j), 0) or
                         self.__check_right(i, j, self.__board.get_sign(i, j), 0) or
                         self.__check_right_down(i, j, self.__board.get_sign(i, j), 0) or
@@ -34,7 +34,7 @@ class Gameplay:
     def user_move(self, sign):
         row = int(input('Choose a row: '))
         column = int(input('Choose a column: '))
-        if self.__is_not_out_of_board_range(row, column):
+        if self.__is_not_out_of_board_range(row, column) and self.__board.get_sign(row, column) == '-':
             self.__board.set_element(row, column, sign)
         else:
             self.user_move(sign)
@@ -62,7 +62,7 @@ class Gameplay:
                 return True
             if self.__is_not_out_of_board_range(row, column) and self.__board.get_sign(row, column) == sign:
                 count = count + 1
-                return self.__check_right(row , column + 1, sign, count)
+                return self.__check_right(row, column + 1, sign, count)
             return False
 
     def __check_right_up(self, row, column, sign, count):
@@ -94,6 +94,9 @@ class Gameplay:
                 return False
 
     def start(self):
+        self.__board = Board(int(input("width of board: ")), int(input("height of board: ")))
+        self.__win_limit = int(input("win limit: "))
+
         while not self.is_win():
             print("{} turn! Your sign is: O".format(self.__player_one.get_name()))
             self.user_move('O')

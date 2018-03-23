@@ -6,7 +6,7 @@ class Board:
     def __init__(self, width=3, height=3):
         self.__width = width
         self.__height = height
-        self.__matrix_board = [["-" for _ in range(height)] for _ in range(width)]
+        self.__matrix_board = [["-" for _ in range(width)] for _ in range(height)]
 
     def __str__(self):
         return self._to_string()
@@ -17,8 +17,8 @@ class Board:
 
     def _to_string(self):
         board_repr = ""
-        for i in range(self.__width):
-            for j in range(self.__height):
+        for i in range(self.__height):
+            for j in range(self.__width):
                 board_repr = board_repr + self.__matrix_board[i][j] + " "
             board_repr = board_repr + "\n\n"
         return board_repr
