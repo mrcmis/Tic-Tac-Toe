@@ -1,5 +1,7 @@
 import socket
-from gameplay import Gameplay
+from multi_gameplay import MultiplayerGameplay
+import sys
+sys.path.append('..')
 
 TCP_IP = '127.0.0.1'
 TCP_PORT = 5005
@@ -15,7 +17,7 @@ print(addr)
 conn2, addr2 = sockt.accept()
 print(addr2)
 
-gameplay = Gameplay(conn, conn2)
+gameplay = MultiplayerGameplay(conn, conn2)
 
 gameplay.start()
 
